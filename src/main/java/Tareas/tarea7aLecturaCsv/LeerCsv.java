@@ -17,26 +17,28 @@ import java.util.Map;
  * @author daniel
  */
 public class LeerCsv {
-    
+
     //método para crear una estructura map donde guarda por cada línea
     //el número de línea y el número de palabras que tiene
-    public static Map<Integer, Integer> vehiculoMap(List<Vehiculo> vehiculo) {
+    public static Map<Integer, Integer> vehiculoMap(List<String> vehiculo) {
         Map<Integer, Integer> mapVehi = new HashMap<>();
         for (int i = 0; i < vehiculo.size(); i++) {
-            mapVehi.put(i, contarPalabrasPorLinea(i));
+            int contar = contarPalabrasPorLinea(vehiculo)[i];
+            mapVehi.put(i, contar);
         }
         return mapVehi;
     }
-    
-    public static int contarPalabrasPorLinea(String linea) {
-        //en java para escapar la barra invertida hay que añadir otra
-        //barra addicional
-        linea = linea.trim(); //este quita los espacios alante y atras
-        //PARA CONTAR LOS ESPACIOS Y SI HAY MÁS DE UN ESPACIO LO CUENTE COMO
-        //EL MISMO
-        String[] array = linea.split("\\s+");
-        
-        return array.length;
+
+    public static int[] contarPalabrasPorLinea(List<String> lineas) {
+        int[] arrInt = new int[lineas.size()];
+        for (int i = 0; i < lineas.size(); i++) {
+            String linea = lineas.get(i);
+            
+            String[] palabras = linea.trim().split("[,\\s]+");
+            arrInt[i] = palabras.length;
+        }
+
+        return arrInt;
     }
 
     //método para separar por comas cada columna y devolver una lista de vehiculos

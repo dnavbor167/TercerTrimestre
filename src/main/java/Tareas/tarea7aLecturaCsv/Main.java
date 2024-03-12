@@ -6,6 +6,7 @@ package Tareas.tarea7aLecturaCsv;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -23,6 +24,10 @@ public class Main {
         for (Vehiculo vehiculo : listVehiculo) {
             System.out.println(vehiculo);
         }
+        
+        Map<Integer, Integer> listaMap = LeerCsv.vehiculoMap(lineaFichero);
+        
+        listaMap.forEach((clave, valor)->System.out.println(clave + ": " + valor));
         
     }
 }
